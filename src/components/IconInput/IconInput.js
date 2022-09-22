@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   border-bottom: var(--borderSize) solid ${COLORS.gray700};
 
   &:focus-within {
-    outline: 1px solid #3065a7;
+    outline: var(--borderSize) solid #3065a7;
     outline-offset: var(--borderSize);
     border-radius: var(--borderSize);
   }
