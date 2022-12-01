@@ -24,8 +24,8 @@ const ProgressBar = ({ value, size, filledColor = COLORS.gray700, max = 100 }) =
   const { height, radius } = styles[size]
 
   return (
-    <Wrapper role='progressbar' height={height} radius={radius}>
-      <Filled value={value} max={max} filledColor={filledColor} />
+    <Wrapper role='progressbar' style={{ '--height': height + 'px', '--radius': radius + 'px' }}>
+      <Filled style={{ '--value': (value / max) * 100 + '%', '--filledColor': filledColor }} />
       <VisuallyHidden>{(value / max) * 100}%</VisuallyHidden>
     </Wrapper>
   )
@@ -33,8 +33,8 @@ const ProgressBar = ({ value, size, filledColor = COLORS.gray700, max = 100 }) =
 
 const Wrapper = styled.div`
   width: 100%;
-  height: ${({ height }) => `${height}px`};
-  border-radius: ${({ radius }) => `${radius}px`};
+  height: var(--height);
+  border-radius: var(--radius);
   border: 1px solid ${COLORS.gray300};
   background-color: ${COLORS.gray300};
   padding: 1px;
@@ -43,8 +43,8 @@ const Wrapper = styled.div`
 
 const Filled = styled.div`
   height: 100%;
-  width: ${({ value, max }) => `${(value / max) * 100}%`};
-  background-color: ${({ filledColor }) => filledColor};
+  width: var(--value);
+  background-color: var(--filledColor);
   border-radius: inherit;
 `
 
